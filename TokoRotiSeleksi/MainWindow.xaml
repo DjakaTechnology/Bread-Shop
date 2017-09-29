@@ -1,0 +1,132 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow" Height="766" Width="1024" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="405*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FF3AA6F1"/>
+        <Rectangle Fill="#FF3AA6F1" Height="89" VerticalAlignment="Top" Grid.Column="1"/>
+        <Rectangle Fill="#FF3A82F1" Height="89" VerticalAlignment="Top"/>
+        <Image Source="c:\users\djaka\documents\visual studio 2013\Projects\TokoRotiSeleksi\TokoRotiSeleksi\Resources\DTechnologyNoRoom.png" Height="89" VerticalAlignment="Top"/>
+        <Button Name="dashboardButton" Content="Dashboard" Style="{DynamicResource ActiveNav}" Margin="0,90,0,0" VerticalAlignment="Top" Height="75" FontSize="16"/>
+        <Button Name="transactionButton" Content="Transaksi" Style="{DynamicResource PrimaryButton}" Margin="0,160,0,0" VerticalAlignment="Top" Height="75" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+        <Button Name="breadButton" Content="Data Roti" Style="{DynamicResource PrimaryButton}" Margin="0,240,0,0" VerticalAlignment="Top" Height="75" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+        <Button Name="staffButton" Content="Data Staff" Style="{DynamicResource PrimaryButton}" Margin="0,320,0,0" VerticalAlignment="Top" Height="75" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+        <Button Name="reportButton" Content="Data Penjualan" Style="{DynamicResource PrimaryButton}" Margin="0,400,0,0" VerticalAlignment="Top" Height="75" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+        <TabControl Name="mainTab" Grid.Column="1" Margin="0,89,0,0" Padding="0" BorderThickness="0">
+            <TabItem Header="TabItem">
+                <Grid Background="White">
+                    <TextBlock x:Name="Welcome" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Toko Roti" VerticalAlignment="Top" Height="44" Width="214" FontSize="24" FontWeight="Bold" Foreground="Black"/>
+                    <DataGrid Name="previewTable" HorizontalAlignment="Left" Margin="24,335,0,0" VerticalAlignment="Top" Height="237" Width="475"/>
+                    <Label Content="Penjualan Minggu Ini" HorizontalAlignment="Left" Margin="24,309,0,0" VerticalAlignment="Top" Padding="0,5,5,5"/>
+                    <Label Content="Tanggal" HorizontalAlignment="Left" Margin="24,54,0,0" VerticalAlignment="Top"/>
+                    <Label Name="nowDate" Content="Label" HorizontalAlignment="Left" Margin="74,54,0,0" VerticalAlignment="Top" Width="196"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="575*"/>
+                        <ColumnDefinition Width="233*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="365*"/>
+                        <RowDefinition Height="211*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="transactionGrid" SelectionChanged="transactionGrid_SelectionChanged" Margin="25,46,21,7" Grid.ColumnSpan="2"/>
+                    <GroupBox Header="Barang" Margin="25,10,124,0" VerticalAlignment="Top" Height="161" Grid.Row="1">
+                        <Grid Margin="0,0,-2,-12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="181*"/>
+                                <ColumnDefinition Width="117*"/>
+                                <ColumnDefinition Width="119*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="itemName" TextChanged="itemName_TextChanged" Height="30" Margin="13,29,7,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
+                            <Label Content="Nama" HorizontalAlignment="Left" Margin="15,4,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="37"/>
+                            <TextBox Name="itemPrice"  Height="30" Margin="13,89,7,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
+                            <Label Content="Harga" HorizontalAlignment="Left" Margin="15,64,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="37"/>
+                            <TextBox Name="itemQty"  Height="30" Margin="8,29,15,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
+                            <Label Content="Jumlah" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Grid.Column="1" Height="26" Width="42"/>
+                            <Button Name="addToTable" Content="Tambah" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,10,8,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.Column="2"/>
+                            <Button Name="updateTable" Content="Ubah" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,55,8,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.Column="2"/>
+                            <Button Name="deleteTable" Content="Hapus" Style="{StaticResource DeclineButton}" HorizontalAlignment="Right" Margin="0,100,8,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FFBD1C1C" Grid.Column="2"/>
+                            <ComboBox Name="itemCategory" SelectionChanged="itemCategory_SelectionChanged" Grid.Column="1" Margin="10,89,0,0" VerticalAlignment="Top" Height="30"/>
+                            <Label Content="Kategori" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="55" Grid.Column="1"/>
+                            <ListBox  Name="itemSuggestion" Visibility="Visible" SelectionChanged="itemSuggestion_SelectionChanged" HorizontalAlignment="Left" Height="100" Margin="13,59,0,-8" VerticalAlignment="Top" Width="161"/>
+                        </Grid>
+                    </GroupBox>
+                    <TextBlock Name="totalPrice"  Margin="48,22,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="29" TextAlignment="Right" Text="0" Grid.Column="1" Grid.Row="1"/>
+                    <Label Content="Total" HorizontalAlignment="Left" Height="34" Margin="9,0,0,0" VerticalAlignment="Top" Grid.Column="1" Width="35" Grid.Row="1"/>
+                    <Label Content="Kembalian" HorizontalAlignment="Left" Height="24" Margin="9,104,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="65"/>
+                    <Label Content="Rp" HorizontalAlignment="Left" Height="24" Margin="24,22,0,0" VerticalAlignment="Top" Padding="5,5,5,0" Grid.Column="1" Width="24" Grid.Row="1"/>
+                    <TextBlock Name="returnMoney" Margin="48,132,20,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="29" TextAlignment="Right" Text="0" Grid.Column="1"/>
+                    <Label Content="Rp" HorizontalAlignment="Left" Height="24" Margin="24,132,0,0" VerticalAlignment="Top" Grid.Row="1" Padding="5,5,5,0" Grid.Column="1" Width="24"/>
+                    <TextBox Name="moneyAmount" TextChanged="moneyAmount_TextChanged"  Height="30" Margin="51,79,18,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Row="1" Grid.Column="1"/>
+                    <Label Content="Uang" HorizontalAlignment="Left" Margin="8,54,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="40" Grid.Row="1" Grid.Column="1"/>
+                    <Label Content="Rp" HorizontalAlignment="Left" Height="24" Margin="24,82,0,0" VerticalAlignment="Top" Grid.Row="1" Padding="5,5,5,0" Grid.Column="1" Width="24"/>
+                    <Button Name="reset"  Content="Reset" Style="{StaticResource DeclineButton}" HorizontalAlignment="Right" Margin="0,0,19,8" VerticalAlignment="Bottom" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FFBD1C1C" Grid.Column="1"/>
+                    <Button Name="checkOut" Click="checkOut_Click" Content="Bayar" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,176,10,0" VerticalAlignment="Top" Width="775" Height="43" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <TextBlock x:Name="totalPrice_Copy"  Margin="477,49,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Height="57" TextAlignment="Right" Text="10%" Grid.Row="1"/>
+                    <Label Content="Diskon" HorizontalAlignment="Left" Height="34" Margin="467,20,0,0" VerticalAlignment="Top" Width="47" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="237*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="74*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="masterGrid" MouseDoubleClick="masterGrid_MouseDoubleClick" Margin="38,64,29,0" VerticalAlignment="Top" Height="483" Grid.ColumnSpan="3"/>
+                    <StackPanel Visibility="Collapsed" Name="filter" HorizontalAlignment="Right" Background="White" Height="100" Margin="0,64,29,0" VerticalAlignment="Top" Width="117" Grid.Column="2">
+                        <CheckBox Name="index1" Content="Roti" Margin="10,0" IsChecked="True"/>
+                        <CheckBox Name="index2" Content="NutriJel" Margin="10,0" IsChecked="True"/>
+                        <CheckBox Name="index3" Content="Sosis" Margin="10,0" IsChecked="True"/>
+                        <CheckBox Name="index4" Content="Kue Tar" Margin="10,0" IsChecked="True"/>
+                        <CheckBox Name="index5" Content="Mmarimas" Margin="10,0" IsChecked="True"/>
+                    </StackPanel>
+                    <Button Name="filterButton" Style="{StaticResource PrimaryButton}" Content="Filter" HorizontalAlignment="Right" Margin="0,25,29,0" VerticalAlignment="Top" Width="117" Height="29" FontSize="14" Grid.Column="2"/>
+                    <TextBox Name="searchBox" TextChanged="searchBox_TextChanged" Height="30" Margin="4,25,3,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
+                    <Label Content="Cari" HorizontalAlignment="Right" Margin="0,24,7,0" VerticalAlignment="Top" Padding="5" Height="28" Width="37" FontSize="14"/>
+                    <Button x:Name="addData" Click="addData_Click" Content="Tambah Data" Style="{DynamicResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,64,29,0" VerticalAlignment="Top" Width="117" Height="33" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.Column="2"/>
+                    <DatePicker Name="dateSelect" HorizontalAlignment="Left" Margin="38,38,0,0" VerticalAlignment="Top" Width="152"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="187*"/>
+                        <ColumnDefinition Width="166*"/>
+                        <ColumnDefinition Width="457*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="breadName" Height="30" Margin="23,89,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Nama" HorizontalAlignment="Left" Margin="25,64,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="37"/>
+                    <TextBox x:Name="breadPrice" Height="30" Margin="23,149,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Name="label1" Content="Harga" HorizontalAlignment="Left" Margin="25,124,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="75"/>
+                    <TextBox x:Name="breadStock" Height="30" Margin="23,209,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
+                    <Label Name="label2" Content="Stok" HorizontalAlignment="Left" Margin="25,184,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="54"/>
+                    <Image Name="imgPreview" Height="415" Margin="16,10,10,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <TextBox x:Name="imageURL" Height="30" Margin="23,269,78,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" IsReadOnly="True"/>
+                    <Label Content="Gambar" HorizontalAlignment="Left" Margin="25,244,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="54"/>
+                    <TextBox x:Name="minBuy" Height="30" Margin="23,329,2,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
+                    <Label Name="minBuyLabel" Content="Minimum Pembelian" HorizontalAlignment="Left" Margin="25,304,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="125"/>
+                    <TextBox x:Name="discount" Height="30" Margin="3,329,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
+                    <Label Name="discountLabel" Content="Diskon" HorizontalAlignment="Left" Margin="3,304,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="54" Grid.Column="1"/>
+                    <Button Name="save" Content="Simpan" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,379,63,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+                    <Button Name="closeButton" Content="Tutup" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="0,379,116,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.ColumnSpan="2"/>
+                    <Button x:Name="delete" Content="Hapus" Style="{StaticResource DeclineButton}" HorizontalAlignment="Right" Margin="0,379,0,0" VerticalAlignment="Top" Width="101" Height="34" FontSize="14" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA" Grid.Column="1"/>
+                    <ComboBox x:Name="itemCategoryData" SelectionChanged="itemCategoryData_SelectionChanged" Grid.Column="1" Margin="6,206,53,0" VerticalAlignment="Top" Height="33" FontSize="14"/>
+                    <Label Content="Kategori" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Height="26" Width="55" Grid.Column="1"/>
+                    <Button Name="browse" Click="browse_Click" Grid.ColumnSpan="2" Style="{StaticResource PrimaryButton}" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="93,269,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
+                    <PasswordBox Name="password" Height="30" Margin="23,209,10,0" VerticalAlignment="Top" FontSize="14"/>
+                </Grid>
+            </TabItem>
+            <DataGrid Height="100" Width="100"/>
+        </TabControl>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="30,20,0,0" TextWrapping="Wrap" Text="Toko Roti" VerticalAlignment="Top" Height="44" Width="214" FontSize="36" FontWeight="Bold" Foreground="White"/>
+        <Button x:Name="reportButton_Copy" Content="Keluar Sesi" Style="{DynamicResource DeclineButton}" Margin="0,689,0,0" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="#FF3480DA"/>
+    </Grid>
+</Window>

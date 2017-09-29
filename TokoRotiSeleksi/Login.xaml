@@ -1,0 +1,15 @@
+﻿<Window x:Class="Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Login" Height="300" Width="300">
+    <Grid>
+        <Rectangle Fill="#FF3AA6F1" Height="64" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="24,12,0,0" TextWrapping="Wrap" Text="Toko Roti" VerticalAlignment="Top" Height="44" Width="214" FontSize="30" FontWeight="Bold" Foreground="White"/>
+        <TextBox Name="username" HorizontalAlignment="Left" Height="23" Margin="25,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="25,72,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Width="117"/>
+        <PasswordBox Name="password" HorizontalAlignment="Left" Height="23" Margin="25,148,0,0"  VerticalAlignment="Top" Width="242"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="25,122,0,0" VerticalAlignment="Top" Padding="0,5,5,5" Width="117"/>
+        <Button x:Name="filterButton" Style="{StaticResource ResourceKey=PrimaryButton}" Content="Login" HorizontalAlignment="Right" Margin="0,176,25,0" VerticalAlignment="Top" Width="86" Height="29" FontSize="14"/>
+
+    </Grid>
+</Window>
